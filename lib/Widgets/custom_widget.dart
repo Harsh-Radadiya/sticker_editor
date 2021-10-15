@@ -7,7 +7,7 @@ class CustomeWidgets {
   }) {
     return MaterialButton(
         height: 40,
-        minWidth: 110,
+        minWidth: 50,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         color: Colors.blueGrey,
         disabledColor: Colors.grey,

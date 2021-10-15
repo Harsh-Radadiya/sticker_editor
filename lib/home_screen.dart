@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 import 'dart:typed_data';
 import 'dart:ui';
 import 'package:dotted_border/dotted_border.dart';
@@ -24,7 +25,9 @@ class _StickerEditingViewState extends State<StickerEditingView> {
   String backgroundImage = 'assets/t-shirt.jpeg';
   ScreenshotController screenshotController = ScreenshotController();
   Uint8List? _imageFile;
+  String fileName = '';
   String imagePath = '';
+  File? file;
 
   // offset
   double x = 120.0;
@@ -45,7 +48,7 @@ class _StickerEditingViewState extends State<StickerEditingView> {
   String selectedtextToShare = "Happy ${weekDays[today - 1]}!";
 
   // pop up menu
-  RxBool isStickerList = false.obs;
+  // RxBool isStickerList = false.obs;
 
   // new String and Image List
   RxList<TextModel> newStringList = <TextModel>[].obs;
@@ -219,12 +222,11 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                           },
                         ),
                         CustomeWidgets.customButton(
-                          btnName: isStickerList.value
-                              ? '❌  Stickers'
-                              : 'Add Stickers',
+                          btnName: 'Add Stickers',
                           onPressed: () {
                             selectedTextIndex = -1;
-                            isStickerList.value = !isStickerList.value;
+
+                            stickerWidget(context);
                           },
                         ),
                         CustomeWidgets.customButton(
@@ -236,19 +238,24 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                             for (var e in newimageList) {
                               e.isSelected = false;
                             }
-                            imagePath = '';
+
                             setState(() {});
+                            imagePath = '';
 
                             imagePath = (await getExternalStorageDirectory())!
-                                .path; //from path_provide package
-                            String fileName = 'demoImage.png';
+                                .path
+                                .trim(); //from path_provide package
+
+                            Random().nextInt(15000);
+                            fileName = '${Random().nextInt(15000)}.png';
 
                             print(imagePath);
 
-                            screenshotController.captureAndSave(
+                            await screenshotController.captureAndSave(
                                 imagePath, //set path where screenshot will be saved
                                 fileName: fileName);
-                            imageCache!.clear();
+                            file = await File('$imagePath/$fileName')
+                                .create(recursive: true);
 
                             setState(() {});
                           },
@@ -258,10 +265,10 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                   ),
                 ),
                 _previewDownloadedImage(),
-                isStickerList.value
-                    ? Positioned(
-                        left: 0, bottom: 0, child: stickerWidget(context))
-                    : Container(),
+                // isStickerList.value
+                //     ? Positioned(
+                //         left: 0, bottom: 0, child: stickerWidget(context))
+                //     : Container(),
                 selectedTextIndex == -1
                     ? Container()
                     : Positioned(
@@ -342,7 +349,8 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                             offset: Offset(0.3, 0.6))
                       ],
                       image: DecorationImage(
-                          image: FileImage(File('$imagePath/demoImage.png')),
+                          // image: FileImage(File('$imagePath/$fileName')),
+                          image: FileImage(file!),
                           fit: BoxFit.cover)),
                 ),
                 InkWell(
@@ -357,55 +365,61 @@ class _StickerEditingViewState extends State<StickerEditingView> {
   }
 
   // Sticker widget
-  Widget stickerWidget(BuildContext context) {
+  Future stickerWidget(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     selectedTextIndex = -1;
-    return Material(
-      elevation: 15,
-      child: SizedBox(
-        height: height * .4,
-        width: width,
-        child: GridView.builder(
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 4),
-            itemBuilder: (BuildContext context, int index) {
-              return InkWell(
-                onTap: () {
-                  for (var e in newimageList) {
-                    e.isSelected = false;
-                  }
-                  for (var e in newStringList) {
-                    e.isSelected = false;
-                  }
-                  isStickerList.value = !isStickerList.value;
-                  newimageList.add(PictureModel(
-                      isNetwork: false,
-                      stringUrl: stickerList[index],
-                      top: y1 + 10 < 300 ? y1 + 10 : 300,
-                      key: DateTime.now().toString(),
-                      isSelected: true,
-                      scale: 1,
-                      left: x1 + 10 < 300 ? x1 + 10 : 300));
-                  x1 = x1 + 10 < 200 ? x1 + 10 : 200;
-                  y1 = y1 + 10 < 200 ? y1 + 10 : 200;
-                  isStickerList.value = false;
-                },
-                child: Image.asset(
-                  stickerList[index],
-                  package: 'stickereditor',
-                  height: 50,
-                  width: 50,
-                ),
-              );
-            }),
-      ),
-    );
+    return showModalBottomSheet(
+        context: context,
+        builder: (context) {
+          return Material(
+            elevation: 15,
+            child: SizedBox(
+              height: height * .4,
+              width: width,
+              child: GridView.builder(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 4),
+                  itemCount: stickerList.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return InkWell(
+                      onTap: () {
+                        for (var e in newimageList) {
+                          e.isSelected = false;
+                        }
+                        for (var e in newStringList) {
+                          e.isSelected = false;
+                        }
+
+                        newimageList.add(PictureModel(
+                            isNetwork: false,
+                            stringUrl: stickerList[index],
+                            top: y1 + 10 < 300 ? y1 + 10 : 300,
+                            key: DateTime.now().toString(),
+                            isSelected: true,
+                            scale: 1,
+                            left: x1 + 10 < 300 ? x1 + 10 : 300));
+                        x1 = x1 + 10 < 200 ? x1 + 10 : 200;
+                        y1 = y1 + 10 < 200 ? y1 + 10 : 200;
+                        Navigator.pop(context);
+                        setState(() {});
+                      },
+                      child: Image.asset(
+                        stickerList[index],
+                        package: 'stickereditor',
+                        height: 50,
+                        width: 50,
+                      ),
+                    );
+                  }),
+            ),
+          );
+        });
   }
 
   // Text widget
   Widget lyricsText(
-    {required double width,
+      {required double width,
       required double height,
       required TextModel newText}) {
     // scale
@@ -434,7 +448,6 @@ class _StickerEditingViewState extends State<StickerEditingView> {
               });
             },
             onTap: () {
-              isStickerList.value = false;
               if (newText.isSelected) {
                 setState(() {
                   newText.isSelected = false;
@@ -591,7 +604,6 @@ class _StickerEditingViewState extends State<StickerEditingView> {
   // Text edit dailog box
   Future showEditBox(
       {BuildContext? context, TextModel? textModel, required bool isNew}) {
-    isStickerList.value = false;
     int index = isNew
         ? -1
         : newStringList.indexWhere((element) => element.key == textModel!.key);
@@ -844,7 +856,7 @@ class _StickerEditingViewState extends State<StickerEditingView> {
   }
 
   void initialiseStickerList() {
-    for (var i = 0; i < 577; i++) {
+    for (var i = 0; i < 27; i++) {
       stickerList.add('assets/Stickers/$i.png');
     }
   }
