@@ -1,7 +1,8 @@
 name: stickereditor
 description: A new Sticker plugin
 version: 0.0.1
-homepage: 
+homepage: https://github.com/Harsh-Radadiya/sticker_editor/blob/master/example/lib/main.dart
+repository: https://github.com/Harsh-Radadiya/sticker_editor
 
 environment:
   sdk: ">=2.12.0 <3.0.0"

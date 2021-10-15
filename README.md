@@ -12,7 +12,7 @@ A flutter package which will help you to create editable and scalable text or St
 - Manually Control the position of the widget along with drags.
 - Automatically resizes itself when the widget changes
 - Highly customizable
-- Easy to use 
+- You can use whole sticker view or it's widget
 
 
 Run the example app in the exmaple folder to find out more about how to use it.
