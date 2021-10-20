@@ -111,7 +111,7 @@
     },
     {
       "name": "path_drawing",
-      "rootUri": "file:///Users/android/Library/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/path_drawing-0.5.1",
+      "rootUri": "file:///Users/android/Library/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/path_drawing-0.5.1+1",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -242,13 +242,13 @@
       "languageVersion": "2.12"
     },
     {
-      "name": "stickereditor",
+      "name": "sticker_editor",
       "rootUri": "../",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2021-10-15T05:17:22.985339Z",
+  "generated": "2021-10-20T11:45:15.528795Z",
   "generator": "pub",
   "generatorVersion": "2.14.3"
 }

@@ -9,7 +9,7 @@ class CustomeWidgets {
         height: 40,
         minWidth: 50,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-        color: Colors.blueGrey,
+        color: Colors.blue,
         disabledColor: Colors.grey,
         child: Text(
           btnName,

@@ -29,6 +29,9 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
+  google_fonts: ^2.1.0
+  url_launcher: ^6.0.12
+  flutter_inappwebview: ^5.3.2
 
 dev_dependencies:
   flutter_test:
@@ -68,6 +71,88 @@ flutter:
   # "family" key with the font family name, and a "fonts" key with a
   # list giving the asset and other descriptors for the font. For
   # example:
+  fonts:
+    - family: Lato
+      fonts:
+        - asset: fonts/Lato-Light.ttf
+    - family: PoiretOne
+      fonts:
+        - asset: fonts/PoiretOne-Regular.ttf
+    - family: Monoton
+      fonts:
+        - asset: fonts/Monoton-Regular.ttf
+    - family: BungeeInline
+      fonts:
+        - asset: fonts/BungeeInline-Regular.ttf
+    - family: ConcertOne
+      fonts:
+        - asset: fonts/ConcertOne-Regular.ttf
+    - family: FrederickatheGreat
+      fonts:
+        - asset: fonts/FrederickatheGreat-Regular.ttf
+    - family: Martel
+      fonts:
+        - asset: fonts/Martel-ExtraLight.ttf
+    - family: NotoSans
+      fonts:
+        - asset: fonts/NotoSans-Regular.ttf
+    - family: Vidaloka
+      fonts:
+        - asset: fonts/Vidaloka-Regular.ttf
+    - family: Billabong
+      fonts:
+        - asset: fonts/Billabong.ttf
+    - family: GrandHotel
+      fonts:
+        - asset: fonts/GrandHotel.otf
+    - family: OpenSans
+      fonts:
+        - asset: fonts/OpenSans.ttf
+    - family: Oswald
+      fonts:
+        - asset: fonts/Oswald.ttf
+    - family: Quicksand
+      fonts:
+        - asset: fonts/Quicksand.otf
+    - family: BeautifulPeople
+      fonts:
+        - asset: fonts/BeautifulPeople.ttf
+    - family: BeautyMountains
+      fonts:
+        - asset: fonts/BeautyMountains.ttf
+    - family: BiteChocolate
+      fonts:
+        - asset: fonts/BiteChocolate.ttf
+    - family: BlackberryJam
+      fonts:
+        - asset: fonts/BlackberryJam.ttf
+    - family: Tomatoes
+      fonts:
+        - asset: fonts/Tomatoes.ttf
+    - family: BunchBlossoms
+      fonts:
+        - asset: fonts/BunchBlossoms.ttf
+    - family: CinderelaRegular
+      fonts:
+        - asset: fonts/CinderelaRegular.ttf
+    - family: Countryside
+      fonts:
+        - asset: fonts/Countryside.ttf
+    - family: Halimun
+      fonts:
+        - asset: fonts/Halimun.ttf
+    - family: LemonJelly
+      fonts:
+        - asset: fonts/LemonJelly.ttf
+    - family: QuiteMagicalRegular
+      fonts:
+        - asset: fonts/QuiteMagicalRegular.ttf
+    - family: TropicalAsianDemoRegular
+      fonts:
+        - asset: fonts/TropicalAsianDemoRegular.ttf
+    - family: VeganStyle
+      fonts:
+        - asset: fonts/VeganStyle.ttf
   # fonts:
   #   - family: Schyler
   #     fonts:

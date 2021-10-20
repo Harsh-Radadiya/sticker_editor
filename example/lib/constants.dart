@@ -1,0 +1,42 @@
+import 'package:flutter/material.dart';
+
+final List<String> fonts = [
+  "Lato",
+  "PoiretOne",
+  "Monoton",
+  "BungeeInline",
+  "ConcertOne",
+  "FrederickatheGreat",
+  "Martel",
+  "Vidaloka",
+  'OpenSans',
+  'Billabong',
+  'GrandHotel',
+  'Oswald',
+  'Quicksand',
+  'BeautifulPeople',
+  'BeautyMountains',
+  'BiteChocolate',
+  'BlackberryJam',
+  'BunchBlossoms',
+  'CinderelaRegular',
+  'Countryside',
+  'Halimun',
+  'LemonJelly',
+  'QuiteMagicalRegular',
+  'Tomatoes',
+  'TropicalAsianDemoRegular',
+  'VeganStyle',
+];
+
+const List<Color> colorPallet = [
+  Colors.black,
+  Colors.white,
+  Colors.red,
+  Colors.blue,
+  Colors.blueAccent,
+  Colors.brown,
+  Colors.green,
+  Colors.indigoAccent,
+  Colors.lime,
+];
