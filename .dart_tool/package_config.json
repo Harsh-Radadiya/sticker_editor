@@ -242,13 +242,13 @@
       "languageVersion": "2.12"
     },
     {
-      "name": "sticker_editor",
+      "name": "stickereditor",
       "rootUri": "../",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2021-10-20T11:45:15.528795Z",
+  "generated": "2021-10-20T12:34:26.832949Z",
   "generator": "pub",
   "generatorVersion": "2.14.3"
 }

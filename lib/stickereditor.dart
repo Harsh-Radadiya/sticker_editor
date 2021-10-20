@@ -32,7 +32,14 @@ class StickerEditingView extends StatefulWidget {
 
   /// Editor's PalletColor List
   List<Color>? palletColor;
-  StickerEditingView({Key? key, required this.fonts, this.palletColor})
+
+  /// Editor's assetsList List
+  List<String>? assetList;
+  StickerEditingView(
+      {Key? key,
+      required this.fonts,
+      this.palletColor,
+      required this.assetList})
       : super(key: key);
 
   @override
@@ -65,14 +72,12 @@ class _StickerEditingViewState extends State<StickerEditingView> {
   // new String and Image List
   RxList<TextModel> newStringList = <TextModel>[].obs;
   RxList<PictureModel> newimageList = <PictureModel>[].obs;
-  final List<String> stickerList = <String>[];
 
   // genearting Image
   bool showProgressOnGenerate = false;
 
   @override
   void initState() {
-    initialiseStickerList();
     super.initState();
   }
 
@@ -121,7 +126,6 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                                   v.isSelected = false;
                                 });
                               }
-                              print(v.isSelected);
                             },
                             onCancel: () {
                               int index = newStringList
@@ -307,7 +311,7 @@ class _StickerEditingViewState extends State<StickerEditingView> {
               child: GridView.builder(
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 4),
-                  itemCount: stickerList.length,
+                  itemCount: widget.assetList!.length,
                   itemBuilder: (BuildContext context, int index) {
                     return InkWell(
                       onTap: () {
@@ -319,7 +323,7 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                         }
                         newimageList.add(PictureModel(
                             isNetwork: false,
-                            stringUrl: stickerList[index],
+                            stringUrl: widget.assetList![index],
                             top: y1 + 10 < 300 ? y1 + 10 : 300,
                             isSelected: true,
                             scale: 1,
@@ -329,18 +333,12 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                         Navigator.pop(context);
                         setState(() {});
                       },
-                      child: Image.asset(stickerList[index],
-                          package: 'stickereditor', height: 50, width: 50),
+                      child: Image.asset(widget.assetList![index],
+                          height: 50, width: 50),
                     );
                   }),
             ),
           );
         });
-  }
-
-  void initialiseStickerList() {
-    for (var i = 0; i < 27; i++) {
-      stickerList.add('assets/Stickers/$i.png');
-    }
   }
 }

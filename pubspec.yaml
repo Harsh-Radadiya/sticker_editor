@@ -1,4 +1,4 @@
-name: sticker_editor
+name: stickereditor
 description: A new Sticker plugin
 version: 0.0.1
 homepage: https://github.com/Harsh-Radadiya/sticker_editor/blob/master/example/lib/main.dart
@@ -44,7 +44,6 @@ flutter:
   # To add assets to your plugin package, add an assets section, like this:
   assets:
     - assets/
-    - assets/Stickers/
     # - assets/Stickers/
   #
   # For details regarding assets in packages, see

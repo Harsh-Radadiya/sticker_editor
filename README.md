@@ -31,9 +31,10 @@ A flutter package which will help you to create editable and scalable text or St
 - Sticker View 
 ```Dart
 StickerEditingView(
-   fonts: fonts,
-   palletColor: colorPallet,
- ),
+  fonts: fonts,
+  palletColor: colorPallet,
+  assetList: stickerList,
+),
 ```
 
 - Text Editing Box

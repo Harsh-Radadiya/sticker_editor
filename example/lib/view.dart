@@ -12,6 +12,14 @@ class StickerEditingViewScreen extends StatefulWidget {
 }
 
 class _StickerEditingViewScreenState extends State<StickerEditingViewScreen> {
+  final List<String> stickerList = <String>[];
+
+  @override
+  void initState() {
+    initialiseStickerList();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,8 +29,15 @@ class _StickerEditingViewScreenState extends State<StickerEditingViewScreen> {
       body: StickerEditingView(
         fonts: fonts,
         palletColor: colorPallet,
+        assetList: stickerList,
       ),
     );
+  }
+
+  void initialiseStickerList() {
+    for (var i = 0; i < 27; i++) {
+      stickerList.add('assets/Stickers/$i.png');
+    }
   }
 }
 
