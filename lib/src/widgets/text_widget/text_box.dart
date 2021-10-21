@@ -9,14 +9,35 @@ import 'textstyle_editor.dart';
 
 // ignore: must_be_immutable
 class TextEditingBox extends StatefulWidget {
+  // TextModel for your text
   final TextModel newText;
+
+  /// Your widget should be move within this [boundWidth]
   final double boundWidth;
+
+  /// Your widget should be move within this [boundHeight]
   final double boundHeight;
+
+  /// For Visibility of editing border
   bool isSelected;
+
+  /// Total Colors option that you want to give to user
   List<Color>? palletColor;
+
+  /// Total Fonts option that you want to give to user
   final List<String> fonts;
+
+  /// If you use onTap then you Have to manage IsSelected field in TextModel and [isSelected]
   final Function()? onTap;
+
+  /// If you use onCancel then you Have to manage IsSelected field in TextModel and [isSelected]
   final Function()? onCancel;
+
+  /// Create a [TextEditingBox] widget
+  ///
+  /// [TextModel] detail of your picture
+  /// [onTap] callback function that called when you tap on [TextEditingBox]
+  /// [onCancel] callback function that called when you tap on Cross icon in [TextEditingBox] border
   TextEditingBox(
       {Key? key,
       required this.newText,
@@ -163,13 +184,16 @@ class _TextEditingBoxState extends State<TextEditingBox> {
                       if (widget.onCancel != null) {
                         widget.onCancel!();
                       }
-                      if (widget.isSelected) {
-                        widget.isSelected = false;
-                        widget.newText.isSelected = false;
-                      } else {
-                        widget.isSelected = true;
-                        widget.newText.isSelected = true;
-                      }
+
+                      setState(() {
+                        if (widget.isSelected) {
+                          widget.isSelected = false;
+                          widget.newText.isSelected = false;
+                        } else {
+                          widget.isSelected = true;
+                          widget.newText.isSelected = true;
+                        }
+                      });
                     },
                     child: widget.isSelected
                         ? Container(
@@ -275,7 +299,7 @@ class _TextEditingBoxState extends State<TextEditingBox> {
         builder: (context) {
           return Container(
             padding: const EdgeInsets.all(4),
-            height: height * .3,
+            height: height * .35,
             child: TextStyleEditor(
               fonts: widget.fonts,
               paletteColors: palletColor,

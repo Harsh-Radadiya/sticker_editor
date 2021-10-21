@@ -20,7 +20,6 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
-    // return const MaterialApp(home: TextEditingBoxScreen());
     return const MaterialApp(
         debugShowCheckedModeBanner: false, home: HomePage());
   }
@@ -53,6 +52,7 @@ class _HomePageState extends State<HomePage> {
                               const StickerEditingViewScreen()));
                 },
                 child: const Text('StickerEditingViewScreen')),
+            const SizedBox(height: 10),
             ElevatedButton(
                 onPressed: () {
                   Navigator.push(
@@ -61,6 +61,7 @@ class _HomePageState extends State<HomePage> {
                           builder: (context) => const TextEditingBoxScreen()));
                 },
                 child: const Text('TextEditingBox')),
+            const SizedBox(height: 10),
             ElevatedButton(
                 onPressed: () {
                   Navigator.push(

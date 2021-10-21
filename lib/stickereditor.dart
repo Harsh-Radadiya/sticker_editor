@@ -35,10 +35,29 @@ class StickerEditingView extends StatefulWidget {
 
   /// Editor's assetsList List
   List<String>? assetList;
+
+  /// Editor's image type
+  bool isnetwork;
+
+  /// Editor's image
+  String imgUrl;
+
+  /// StickerEditor View Height
+  double? height;
+
+  /// StickerEditor View Width
+  double? width;
+
+  /// Create a [StickerEditingBox] widget
+  ///
   StickerEditingView(
       {Key? key,
       required this.fonts,
       this.palletColor,
+      this.height,
+      this.width,
+      required this.isnetwork,
+      required this.imgUrl,
       required this.assetList})
       : super(key: key);
 
@@ -48,7 +67,6 @@ class StickerEditingView extends StatefulWidget {
 
 class _StickerEditingViewState extends State<StickerEditingView> {
   // image source
-  String backgroundImage = 'assets/t-shirt.jpeg';
   ScreenshotController screenshotController = ScreenshotController();
   String fileName = '';
   String imagePath = '';
@@ -97,15 +115,34 @@ class _StickerEditingViewState extends State<StickerEditingView> {
               child: Screenshot(
                 controller: screenshotController,
                 child: SizedBox(
-                  height: height * .40,
-                  width: width * .78,
+                  height: widget.height ?? height * .40,
+                  width: widget.width ?? width * .78,
                   child: Stack(
                     children: [
-                      Image.asset(
-                        'assets/t-shirt.jpeg',
-                        package: 'stickereditor',
-                        height: height * .40,
-                        width: width * .78,
+                      widget.isnetwork
+                          ? Image.network(
+                              widget.imgUrl,
+                              height: widget.height ?? height * .40,
+                              width: widget.width ?? width * .78,
+                              fit: BoxFit.cover,
+                            )
+                          : Image.asset(
+                              widget.imgUrl,
+                              height: widget.height ?? height * .40,
+                              width: widget.width ?? width * .78,
+                              fit: BoxFit.cover,
+                            ),
+                      InkWell(
+                        onTap: () {
+                          setState(() {
+                            for (var element in newStringList) {
+                              element.isSelected = false;
+                            }
+                            for (var e in newimageList) {
+                              e.isSelected = false;
+                            }
+                          });
+                        },
                       ),
                       ...newStringList.map((v) {
                         return TextEditingBox(
@@ -141,6 +178,29 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                       }).toList(),
                       ...newimageList.map((v) {
                         return StickerEditingBox(
+                            onCancel: () {
+                              int index = newimageList
+                                  .indexWhere((element) => v == element);
+
+                              newimageList.removeAt(index);
+                            },
+                            onTap: () {
+                              if (!v.isSelected) {
+                                setState(() {
+                                  for (var element in newStringList) {
+                                    element.isSelected = false;
+                                  }
+                                  for (var e in newimageList) {
+                                    e.isSelected = false;
+                                  }
+                                  v.isSelected = true;
+                                });
+                              } else {
+                                setState(() {
+                                  v.isSelected = false;
+                                });
+                              }
+                            },
                             boundWidth: width * .70,
                             boundHeight: height * .30,
                             pictureModel: v);
@@ -195,10 +255,22 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                         Future.delayed(const Duration(milliseconds: 200),
                             () async {
                           imagePath = '';
+                          if (Platform.isMacOS) {
+                            imagePath =
+                                (await getApplicationDocumentsDirectory())
+                                    .path
+                                    .trim(); //from path_provide package
+                          } else if (Platform.isAndroid) {
+                            imagePath = (await getExternalStorageDirectory())!
+                                .path
+                                .trim(); //from path_provide package
 
-                          imagePath = (await getExternalStorageDirectory())!
-                              .path
-                              .trim(); //from path_provide package
+                          } else if (Platform.isIOS) {
+                            imagePath =
+                                (await getApplicationDocumentsDirectory())
+                                    .path
+                                    .trim();
+                          }
 
                           Random().nextInt(15000);
                           fileName = '${Random().nextInt(15000)}.png';
@@ -254,6 +326,7 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                         e.isSelected = false;
                       }
                       textModel!.isSelected = true;
+                      textModel.name = dailogTextController.text.trim();
                       newStringList.add(textModel);
                     });
                     Navigator.pop(context);

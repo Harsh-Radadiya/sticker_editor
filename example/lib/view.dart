@@ -13,6 +13,7 @@ class StickerEditingViewScreen extends StatefulWidget {
 
 class _StickerEditingViewScreenState extends State<StickerEditingViewScreen> {
   final List<String> stickerList = <String>[];
+  String backgroundImageUrl = 'assets/t-shirt.jpeg';
 
   @override
   void initState() {
@@ -27,6 +28,10 @@ class _StickerEditingViewScreenState extends State<StickerEditingViewScreen> {
         title: const Text('StickerEditingView'),
       ),
       body: StickerEditingView(
+        isnetwork: false,
+        height: 300,
+        width: 300,
+        imgUrl: backgroundImageUrl,
         fonts: fonts,
         palletColor: colorPallet,
         assetList: stickerList,

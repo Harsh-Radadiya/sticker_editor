@@ -3,16 +3,32 @@ import 'package:flutter/material.dart';
 import 'package:stickereditor/src/model/picture_model.dart';
 
 class StickerEditingBox extends StatefulWidget {
+  /// Your widget should be move within this [boundWidth]
   final double boundWidth;
+
+  /// Your widget should be move within this [boundHeight]
   final double boundHeight;
+
+  /// This picture model where you pass necessary fields
   final PictureModel pictureModel;
+
+  /// If you use onCancel then you Have to manage IsSelected field in PicturModel
   final Function()? onCancel;
 
+  /// If you use onTap then you Have to manage IsSelected field in PicturModel
+  final Function()? onTap;
+
+  /// Create a [StickerEditingBox] widget
+  ///
+  /// [pictureModel] detail of your picture
+  /// [onTap] callback function that called when you tap on [StickerEditingBox]
+  /// [onCancel] callback function that called when you tap on Cross icon in [StickerEditingBox] border
   const StickerEditingBox(
       {Key? key,
       required this.boundWidth,
       required this.boundHeight,
       required this.pictureModel,
+      this.onTap,
       this.onCancel})
       : super(key: key);
 
@@ -62,10 +78,14 @@ class _StickerEditingBoxState extends State<StickerEditingBox> {
               });
             },
             onTap: () {
-              if (widget.pictureModel.isSelected) {
-                setState(() => widget.pictureModel.isSelected = false);
+              if (widget.onTap == null) {
+                if (widget.pictureModel.isSelected) {
+                  setState(() => widget.pictureModel.isSelected = false);
+                } else {
+                  setState(() => widget.pictureModel.isSelected = true);
+                }
               } else {
-                setState(() => widget.pictureModel.isSelected = true);
+                widget.onTap!();
               }
             },
             child: Stack(
