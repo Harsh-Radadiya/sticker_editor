@@ -1,21 +1,21 @@
 # Sticker Editor
 A flutter plugin for iOS, Android and Mac for Rotate, Scaling, Moving and Editing Text, Photo, Stickers
 
-![](./assets/readme/demo.gif) 
+![](https://github.com/Harsh-Radadiya/sticker_editor/raw/master/assets/readme/demo.gif)
 
 <br>
 
 | Sticker Editor                           |                                             |
 | ---------------------------------------- | ------------------------------------------- |
-| ![](./assets/readme/text_editor_box.png) | ![](./assets/readme/sticker_editor_box.png) |
+| ![](https://github.com/Harsh-Radadiya/sticker_editor/raw/master/assets/readme/text_editor_box.png) | ![](https://github.com/Harsh-Radadiya/sticker_editor/raw/master/assets/readme/sticker_editor_box.png) |
 
 <br>
 
 <br>
 
-| Only Text                             | Only Photo                         |
-| ------------------------------------- | ---------------------------------- |
-| ![](./assets/readme/only_picture.png) | ![](./assets/readme/only_text.png) |
+| Only Text                                                                                    | Only Photo                                                                                      |
+| -------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
+| ![](https://github.com/Harsh-Radadiya/sticker_editor/raw/master/assets/readme/only_text.png) | ![](https://github.com/Harsh-Radadiya/sticker_editor/raw/master/assets/readme/only_picture.png) |
 
 <br>
  
