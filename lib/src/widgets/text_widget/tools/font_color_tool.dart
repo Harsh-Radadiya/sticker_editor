@@ -6,7 +6,8 @@ class FontColorTool extends StatelessWidget {
   final Color? activeColor;
   final Function(Color) onColorPicked;
 
-  const FontColorTool({Key? key, 
+  const FontColorTool({
+    Key? key,
     required this.colors,
     required this.onColorPicked,
     this.activeColor,

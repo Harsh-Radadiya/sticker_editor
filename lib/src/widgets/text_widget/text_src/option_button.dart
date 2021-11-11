@@ -6,7 +6,8 @@ class OptionButton extends StatelessWidget {
   final Widget child;
   final Size? size;
 
-  const OptionButton({Key? key, 
+  const OptionButton({
+    Key? key,
     required this.onPressed,
     required this.child,
     this.isActive = false,
@@ -15,7 +16,7 @@ class OptionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RawMaterialButton(
-      constraints: BoxConstraints.tight(size ??const Size(45, 45)),
+      constraints: BoxConstraints.tight(size ?? const Size(45, 45)),
       highlightColor: Theme.of(context).colorScheme.background,
       splashColor: Theme.of(context).colorScheme.background,
       fillColor: isActive ? Theme.of(context).colorScheme.background : null,

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:stickereditor/src/widgets/text_widget/text_src/option_button.dart';
 
-
 class TextFormatTool extends StatelessWidget {
   final Function(
     bool bold,
@@ -14,7 +13,8 @@ class TextFormatTool extends StatelessWidget {
   final bool italic;
   final bool caps;
 
-  const TextFormatTool({Key? key, 
+  const TextFormatTool({
+    Key? key,
     required this.onTextFormatEdited,
     required this.onTextAlignEdited,
     required this.onCpasLockTaggle,
@@ -38,7 +38,7 @@ class TextFormatTool extends StatelessWidget {
             onFormatEdited: onTextFormatEdited,
             onCpasLockTaggle: onCpasLockTaggle,
           ),
-         const SizedBox(height: 36),
+          const SizedBox(height: 36),
           _TextAlignEditor(
             textAlign: textAlign,
             onTextAlignEdited: onTextAlignEdited,
@@ -229,7 +229,7 @@ class _TextFormatOption extends StatelessWidget {
           onPressed: onPressed,
           child: Icon(icon),
         ),
-       const SizedBox(height: 12),
+        const SizedBox(height: 12),
         Text(title),
       ],
     );

@@ -10,7 +10,8 @@ class FontSizeTool extends StatelessWidget {
     double letterHeight,
   ) onFontSizeEdited;
 
-  const FontSizeTool({Key? key, 
+  const FontSizeTool({
+    Key? key,
     required this.onFontSizeEdited,
     this.fontSize = 0,
     this.letterSpacing = 0,
