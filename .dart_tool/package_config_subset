@@ -46,6 +46,10 @@ get
 2.12
 file:///Users/android/Library/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/get-4.3.8/
 file:///Users/android/Library/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/get-4.3.8/lib/
+js
+2.12
+file:///Users/android/Library/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/js-0.6.3/
+file:///Users/android/Library/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/js-0.6.3/lib/
 lints
 2.12
 file:///Users/android/Library/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/lints-1.0.1/
@@ -158,6 +162,10 @@ flutter_test
 2.12
 file:///Users/android/Library/Developer/flutter/packages/flutter_test/
 file:///Users/android/Library/Developer/flutter/packages/flutter_test/lib/
+flutter_web_plugins
+2.12
+file:///Users/android/Library/Developer/flutter/packages/flutter_web_plugins/
+file:///Users/android/Library/Developer/flutter/packages/flutter_web_plugins/lib/
 stickereditor
 2.12
 file:///Volumes/New_Extra/project_h/sticker_editor/

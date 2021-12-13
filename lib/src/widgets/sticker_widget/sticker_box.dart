@@ -38,7 +38,14 @@ class StickerEditingBox extends StatefulWidget {
 
 class _StickerEditingBoxState extends State<StickerEditingBox> {
   Offset deltaOffset = const Offset(0, 0);
-  double angle = 0.0;
+
+  double? lastScale;
+
+  @override
+  void initState() {
+    lastScale = widget.pictureModel.scale;
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -48,17 +55,30 @@ class _StickerEditingBoxState extends State<StickerEditingBox> {
       child: Transform.scale(
         scale: widget.pictureModel.scale,
         child: Transform.rotate(
-          angle: angle,
+          angle: widget.pictureModel.angle,
           child: GestureDetector(
             onScaleStart: (tap) {
               setState(() => deltaOffset = const Offset(0, 0));
             },
             onScaleUpdate: (tap) {
+              var intialScale = tap.scale;
               setState(() {
                 if (tap.pointerCount == 2) {
-                  angle = tap.rotation;
-                  widget.pictureModel.scale = tap.scale;
+                  widget.pictureModel.angle +=
+                      tap.rotation - widget.pictureModel.angle;
+
+                  print("onScaleUpdate ==>> ${tap.scale}");
+                  print(['object']);
+
+                  if ((tap.scale - lastScale!).isNegative) {
+                    widget.pictureModel.scale -= 0.04;
+                  } else {
+                    widget.pictureModel.scale += 0.04;
+                  }
+
+                  // widget.pictureModel.scale = tap.scale;
                 }
+
                 if ((widget.pictureModel.left +
                             tap.delta.dx -
                             deltaOffset.dx) <=
@@ -76,6 +96,8 @@ class _StickerEditingBoxState extends State<StickerEditingBox> {
 
                 deltaOffset = tap.delta;
               });
+
+              lastScale = tap.scale;
             },
             onTap: () {
               if (widget.onTap == null) {
@@ -108,8 +130,12 @@ class _StickerEditingBoxState extends State<StickerEditingBox> {
                   bottom: 0,
                   left: 0,
                   child: GestureDetector(
-                    onPanUpdate: (DragUpdateDetails d) {
-                      setState(() => angle = d.delta.direction);
+                    onPanUpdate: (tap) {
+                      if (!tap.delta.dx.isNegative) {
+                        setState(() => widget.pictureModel.angle -= 0.05);
+                      } else {
+                        setState(() => widget.pictureModel.angle += 0.05);
+                      }
                     },
                     child: widget.pictureModel.isSelected
                         ? Container(
@@ -119,7 +145,7 @@ class _StickerEditingBoxState extends State<StickerEditingBox> {
                                     Border.all(color: Colors.black, width: 1),
                                 shape: BoxShape.circle,
                                 color: Colors.white),
-                            child: const Icon(Icons.rotate_right,
+                            child: const Icon(Icons.sync_alt,
                                 color: Colors.black, size: 12),
                           )
                         : Container(),

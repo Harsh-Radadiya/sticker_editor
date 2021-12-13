@@ -88,6 +88,11 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  flutter_web_plugins:
+    dependency: "direct main"
+    description: flutter
+    source: sdk
+    version: "0.0.0"
   get:
     dependency: "direct main"
     description:
@@ -95,6 +100,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.3.8"
+  js:
+    dependency: transitive
+    description:
+      name: js
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.6.3"
   lints:
     dependency: transitive
     description:

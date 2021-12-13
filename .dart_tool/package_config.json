@@ -80,8 +80,20 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "flutter_web_plugins",
+      "rootUri": "file:///Users/android/Library/Developer/flutter/packages/flutter_web_plugins",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "get",
       "rootUri": "file:///Users/android/Library/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/get-4.3.8",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "js",
+      "rootUri": "file:///Users/android/Library/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/js-0.6.3",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -248,7 +260,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2021-11-11T06:41:09.494296Z",
+  "generated": "2021-12-13T09:24:16.808367Z",
   "generator": "pub",
-  "generatorVersion": "2.14.3"
+  "generatorVersion": "2.14.4"
 }

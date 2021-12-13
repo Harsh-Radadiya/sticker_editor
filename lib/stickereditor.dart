@@ -399,6 +399,7 @@ class _StickerEditingViewState extends State<StickerEditingView> {
                             stringUrl: widget.assetList![index],
                             top: y1 + 10 < 300 ? y1 + 10 : 300,
                             isSelected: true,
+                            angle: 0.0,
                             scale: 1,
                             left: x1 + 10 < 300 ? x1 + 10 : 300));
                         x1 = x1 + 10 < 200 ? x1 + 10 : 200;

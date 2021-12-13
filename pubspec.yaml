@@ -1,6 +1,6 @@
 name: stickereditor
 description: A widget that lets you modify and move your text and image according to your boundaries.
-version: 0.0.6
+version: 0.0.8
 homepage: https://github.com/Harsh-Radadiya/sticker_editor/blob/master/example/lib/main.dart
 repository: https://github.com/Harsh-Radadiya/sticker_editor
 
@@ -11,6 +11,8 @@ environment:
 
 dependencies:
   flutter:
+    sdk: flutter
+  flutter_web_plugins:
     sdk: flutter
   get: ^4.3.8
   dotted_border: ^2.0.0+1
@@ -40,6 +42,9 @@ flutter:
         pluginClass: StickereditorPlugin
       macos:
         pluginClass: StickereditorPlugin
+      web:
+        pluginClass: StickerEditorWeb
+        fileName: sticker_editor_web.dart
 
   # To add assets to your plugin package, add an assets section, like this:
   assets:
